@@ -1,0 +1,6 @@
+[ 2026-04-07 20:55:41,730 ] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-04-07 20:55:41,734 ] 107 dagshub - INFO - Accessing as akarsharma004
+[ 2026-04-07 20:55:42,696 ] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/akarsharma004/prc_cyber_security "HTTP/1.1 200 OK"
+[ 2026-04-07 20:55:43,680 ] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-04-07 20:55:43,682 ] 107 dagshub - INFO - Initialized MLflow to track repo "akarsharma004/prc_cyber_security"
+[ 2026-04-07 20:55:43,682 ] 107 dagshub - INFO - Repository akarsharma004/prc_cyber_security initialized!

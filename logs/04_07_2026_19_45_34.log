@@ -1,0 +1,45 @@
+[ 2026-04-07 19:45:39,212 ] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-04-07 19:45:39,215 ] 107 dagshub - INFO - Accessing as akarsharma004
+[ 2026-04-07 19:45:40,595 ] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/akarsharma004/prc_cyber_security "HTTP/1.1 200 OK"
+[ 2026-04-07 19:45:41,894 ] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-04-07 19:45:41,896 ] 107 dagshub - INFO - Initialized MLflow to track repo "akarsharma004/prc_cyber_security"
+[ 2026-04-07 19:45:41,897 ] 107 dagshub - INFO - Repository akarsharma004/prc_cyber_security initialized!
+[ 2026-04-07 19:45:41,897 ] 22 root - INFO - Starting training pipeline
+[ 2026-04-07 19:45:41,901 ] 31 root - INFO - Initiating data ingestion
+[ 2026-04-07 19:45:41,901 ] 39 root - INFO - Connecting to MongoDB: AKARSHAI.NetworkData
+[ 2026-04-07 19:45:57,780 ] 56 root - INFO - Data fetched successfully with shape: (11055, 31)
+[ 2026-04-07 19:45:57,822 ] 75 root - INFO - Feature store file saved at: Artifacts\04_07_2026_19_45_41\data_ingestion\feature_store\phis.csv
+[ 2026-04-07 19:45:57,825 ] 93 root - INFO - Train-test split completed
+[ 2026-04-07 19:45:57,866 ] 103 root - INFO - Train file saved at: Artifacts\04_07_2026_19_45_41\data_ingestion\ingested\train.csv
+[ 2026-04-07 19:45:57,866 ] 104 root - INFO - Test file saved at: Artifacts\04_07_2026_19_45_41\data_ingestion\ingested\test.csv
+[ 2026-04-07 19:45:57,867 ] 123 root - INFO - Data ingestion completed successfully
+[ 2026-04-07 19:45:57,867 ] 33 root - INFO - Data ingestion completed: DataIngestionArtifact(trained_file_path='Artifacts\\04_07_2026_19_45_41\\data_ingestion\\ingested\\train.csv', test_file_path='Artifacts\\04_07_2026_19_45_41\\data_ingestion\\ingested\\test.csv')
+[ 2026-04-07 19:45:57,872 ] 40 root - INFO - Initiating data validation
+[ 2026-04-07 19:45:57,941 ] 48 root - INFO - Expected columns: 31
+[ 2026-04-07 19:45:57,941 ] 49 root - INFO - Actual columns: 31
+[ 2026-04-07 19:45:57,941 ] 48 root - INFO - Expected columns: 31
+[ 2026-04-07 19:45:57,941 ] 49 root - INFO - Actual columns: 31
+[ 2026-04-07 19:45:58,051 ] 42 root - INFO - Data validation completed: DataValidationArtifact(validation_status=True, valid_train_file_path='Artifacts\\04_07_2026_19_45_41\\data_validation\\validated\\train.csv', valid_test_file_path='Artifacts\\04_07_2026_19_45_41\\data_validation\\validated\\test.csv', invalid_train_file_path=None, invalid_test_file_path=None, drift_report_file_path='Artifacts\\04_07_2026_19_45_41\\data_validation\\drift_report\\report.yaml')
+[ 2026-04-07 19:45:58,051 ] 56 root - INFO - Initiating data transformation
+[ 2026-04-07 19:45:58,051 ] 66 root - INFO - Entered initiate_data_transformation
+[ 2026-04-07 19:45:58,118 ] 52 root - INFO - Creating KNN Imputer pipeline
+[ 2026-04-07 19:45:58,126 ] 57 root - INFO - Saving object...
+[ 2026-04-07 19:45:58,128 ] 64 root - INFO - Object saved successfully
+[ 2026-04-07 19:45:58,129 ] 57 root - INFO - Saving object...
+[ 2026-04-07 19:45:58,130 ] 64 root - INFO - Object saved successfully
+[ 2026-04-07 19:45:58,130 ] 115 root - INFO - Data transformation completed
+[ 2026-04-07 19:45:58,130 ] 58 root - INFO - Data transformation completed: DataTransformationArtifact(transformed_object_file_path='Artifacts\\04_07_2026_19_45_41\\data_transformation\\transformed_object\\preprocessing.pkl', transformed_train_file_path='Artifacts\\04_07_2026_19_45_41\\data_transformation\\transformed\\train.npy', transformed_test_file_path='Artifacts\\04_07_2026_19_45_41\\data_transformation\\transformed\\test.npy')
+[ 2026-04-07 19:45:58,131 ] 68 root - INFO - Initiating model training
+[ 2026-04-07 19:45:58,151 ] 89 root - INFO - Training model: Random Forest
+[ 2026-04-07 19:46:02,870 ] 89 root - INFO - Training model: Decision Tree
+[ 2026-04-07 19:46:02,975 ] 89 root - INFO - Training model: Gradient Boosting
+[ 2026-04-07 19:47:59,041 ] 89 root - INFO - Training model: Logistic Regression
+[ 2026-04-07 19:47:59,067 ] 89 root - INFO - Training model: AdaBoost
+[ 2026-04-07 19:48:15,847 ] 121 root - INFO - Best model selected: Random Forest
+[ 2026-04-07 19:48:15,990 ] 57 root - INFO - Saving object...
+[ 2026-04-07 19:48:16,002 ] 64 root - INFO - Object saved successfully
+[ 2026-04-07 19:48:16,003 ] 57 root - INFO - Saving object...
+[ 2026-04-07 19:48:16,016 ] 64 root - INFO - Object saved successfully
+[ 2026-04-07 19:48:16,016 ] 160 root - INFO - Model saved successfully
+[ 2026-04-07 19:50:20,392 ] 70 root - INFO - Model training completed: ModelTrainerArtifact(trained_model_file_path='Artifacts\\04_07_2026_19_45_41\\model_trainer\\trained_model\\model.pkl', train_metric_artifact=ClassificationMetricArtifact(f1_score=0.9912262803509488, precision_score=0.9894093686354379, recall_score=0.9930498773507768), test_metric_artifact=ClassificationMetricArtifact(f1_score=0.9742777997625643, precision_score=0.9754358161648178, recall_score=0.9731225296442688))
+[ 2026-04-07 19:50:20,392 ] 74 root - INFO - Pipeline completed successfully

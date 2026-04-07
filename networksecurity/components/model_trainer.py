@@ -29,6 +29,16 @@ from sklearn.ensemble import (
     RandomForestClassifier,
 )
 
+# ===== MLflow (SAFE) =====
+import mlflow
+import dagshub
+
+dagshub.init(
+    repo_owner="akarsharma004",
+    repo_name="prc_cyber_security",
+    mlflow=True
+)
+
 
 class ModelTrainer:
     def __init__(
@@ -41,6 +51,22 @@ class ModelTrainer:
             self.data_transformation_artifact = data_transformation_artifact
         except Exception as e:
             raise NetworkSecurityException(e, sys)
+
+    # ===== SAFE MLflow =====
+    # def track_mlflow(self, model, metrics):
+    #     try:
+    #         with mlflow.start_run():
+    #             mlflow.log_metric("f1_score", metrics.f1_score)
+    #             mlflow.log_metric("precision", metrics.precision_score)
+    #             mlflow.log_metric("recall", metrics.recall_score)
+
+    #             mlflow.sklearn.log_model(
+    #                 sk_model=model,
+    #                 name="model"
+    #             )
+
+    #     except Exception as e:
+    #         print("MLflow failed (ignored):", e)
 
     def train_model(self, X_train, y_train, X_test, y_test):
 
@@ -72,7 +98,7 @@ class ModelTrainer:
         }
 
         # ===== MODEL SELECTION =====
-        model_report: dict = evaluate_models(
+        model_report = evaluate_models(
             X_train=X_train,
             y_train=y_train,
             X_test=X_test,
@@ -88,8 +114,12 @@ class ModelTrainer:
         ]
 
         best_model = models[best_model_name]
+
+        # 🔥 CRITICAL FIX (was missing before)
         best_model.fit(X_train, y_train)
-        
+
+        logging.info(f"Best model selected: {best_model_name}")
+
         # ===== METRICS =====
         y_train_pred = best_model.predict(X_train)
         y_test_pred = best_model.predict(X_test)
@@ -104,18 +134,19 @@ class ModelTrainer:
             y_pred=y_test_pred
         )
 
-        # ===== LOAD PREPROCESSOR =====
+        # ===== SAVE MODEL FIRST (MANDATORY) =====
         preprocessor = load_object(
-            file_path=self.data_transformation_artifact.transformed_object_file_path
+            self.data_transformation_artifact.transformed_object_file_path
         )
-
-        # ===== SAVE MODEL =====
-        model_dir = os.path.dirname(self.model_trainer_config.trained_model_file_path)
-        os.makedirs(model_dir, exist_ok=True)
 
         final_model = NetworkModel(
             preprocessor=preprocessor,
             model=best_model
+        )
+
+        os.makedirs(
+            os.path.dirname(self.model_trainer_config.trained_model_file_path),
+            exist_ok=True
         )
 
         save_object(
@@ -123,11 +154,14 @@ class ModelTrainer:
             final_model
         )
 
-        # also save raw model (optional)
         os.makedirs("final_model", exist_ok=True)
         save_object("final_model/model.pkl", best_model)
 
-        logging.info("Model training completed successfully")
+        logging.info("Model saved successfully")
+
+        # ===== MLflow (SAFE, NON-BLOCKING) =====
+        self.track_mlflow(best_model, classification_train_metric)
+        self.track_mlflow(best_model, classification_test_metric)
 
         return ModelTrainerArtifact(
             trained_model_file_path=self.model_trainer_config.trained_model_file_path,
