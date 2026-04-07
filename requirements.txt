@@ -8,7 +8,9 @@ scikit-learn
 pyYAML
 dill
 mlflow
-
+dagshub
+fastapi
+uvicorn
 
 ##-e . 
 ##Include at the end of the project

@@ -1,0 +1,31 @@
+[ 2026-04-07 17:50:03,110 ] 22 root - INFO - Starting training pipeline
+[ 2026-04-07 17:50:03,110 ] 31 root - INFO - Initiating data ingestion
+[ 2026-04-07 17:50:03,110 ] 39 root - INFO - Connecting to MongoDB: AKARSHAI.NetworkData
+[ 2026-04-07 17:50:20,026 ] 56 root - INFO - Data fetched successfully with shape: (11055, 31)
+[ 2026-04-07 17:50:20,068 ] 75 root - INFO - Feature store file saved at: Artifacts\04_07_2026_17_50_03\data_ingestion\feature_store\phis.csv
+[ 2026-04-07 17:50:20,070 ] 93 root - INFO - Train-test split completed
+[ 2026-04-07 17:50:20,109 ] 103 root - INFO - Train file saved at: Artifacts\04_07_2026_17_50_03\data_ingestion\ingested\train.csv
+[ 2026-04-07 17:50:20,109 ] 104 root - INFO - Test file saved at: Artifacts\04_07_2026_17_50_03\data_ingestion\ingested\test.csv
+[ 2026-04-07 17:50:20,114 ] 123 root - INFO - Data ingestion completed successfully
+[ 2026-04-07 17:50:20,114 ] 33 root - INFO - Data ingestion completed: DataIngestionArtifact(trained_file_path='Artifacts\\04_07_2026_17_50_03\\data_ingestion\\ingested\\train.csv', test_file_path='Artifacts\\04_07_2026_17_50_03\\data_ingestion\\ingested\\test.csv')
+[ 2026-04-07 17:50:20,117 ] 40 root - INFO - Initiating data validation
+[ 2026-04-07 17:50:20,188 ] 48 root - INFO - Expected columns: 31
+[ 2026-04-07 17:50:20,188 ] 49 root - INFO - Actual columns: 31
+[ 2026-04-07 17:50:20,188 ] 48 root - INFO - Expected columns: 31
+[ 2026-04-07 17:50:20,188 ] 49 root - INFO - Actual columns: 31
+[ 2026-04-07 17:50:20,288 ] 42 root - INFO - Data validation completed: DataValidationArtifact(validation_status=True, valid_train_file_path='Artifacts\\04_07_2026_17_50_03\\data_validation\\validated\\train.csv', valid_test_file_path='Artifacts\\04_07_2026_17_50_03\\data_validation\\validated\\test.csv', invalid_train_file_path=None, invalid_test_file_path=None, drift_report_file_path='Artifacts\\04_07_2026_17_50_03\\data_validation\\drift_report\\report.yaml')
+[ 2026-04-07 17:50:20,288 ] 56 root - INFO - Initiating data transformation
+[ 2026-04-07 17:50:20,288 ] 66 root - INFO - Entered initiate_data_transformation
+[ 2026-04-07 17:50:20,355 ] 52 root - INFO - Creating KNN Imputer pipeline
+[ 2026-04-07 17:50:20,368 ] 57 root - INFO - Saving object...
+[ 2026-04-07 17:50:20,370 ] 64 root - INFO - Object saved successfully
+[ 2026-04-07 17:50:20,370 ] 57 root - INFO - Saving object...
+[ 2026-04-07 17:50:20,373 ] 64 root - INFO - Object saved successfully
+[ 2026-04-07 17:50:20,373 ] 115 root - INFO - Data transformation completed
+[ 2026-04-07 17:50:20,374 ] 58 root - INFO - Data transformation completed: DataTransformationArtifact(transformed_object_file_path='Artifacts\\04_07_2026_17_50_03\\data_transformation\\transformed_object\\preprocessing.pkl', transformed_train_file_path='Artifacts\\04_07_2026_17_50_03\\data_transformation\\transformed\\train.npy', transformed_test_file_path='Artifacts\\04_07_2026_17_50_03\\data_transformation\\transformed\\test.npy')
+[ 2026-04-07 17:50:20,374 ] 68 root - INFO - Initiating model training
+[ 2026-04-07 17:50:20,396 ] 89 root - INFO - Training model: Random Forest
+[ 2026-04-07 17:50:24,045 ] 89 root - INFO - Training model: Decision Tree
+[ 2026-04-07 17:50:24,143 ] 89 root - INFO - Training model: Gradient Boosting
+[ 2026-04-07 17:52:13,356 ] 89 root - INFO - Training model: Logistic Regression
+[ 2026-04-07 17:52:13,382 ] 89 root - INFO - Training model: AdaBoost

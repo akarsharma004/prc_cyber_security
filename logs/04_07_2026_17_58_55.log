@@ -1,0 +1,38 @@
+[ 2026-04-07 17:58:56,568 ] 22 root - INFO - Starting training pipeline
+[ 2026-04-07 17:58:56,569 ] 31 root - INFO - Initiating data ingestion
+[ 2026-04-07 17:58:56,569 ] 39 root - INFO - Connecting to MongoDB: AKARSHAI.NetworkData
+[ 2026-04-07 17:59:12,582 ] 56 root - INFO - Data fetched successfully with shape: (11055, 31)
+[ 2026-04-07 17:59:12,622 ] 75 root - INFO - Feature store file saved at: Artifacts\04_07_2026_17_58_56\data_ingestion\feature_store\phis.csv
+[ 2026-04-07 17:59:12,624 ] 93 root - INFO - Train-test split completed
+[ 2026-04-07 17:59:12,664 ] 103 root - INFO - Train file saved at: Artifacts\04_07_2026_17_58_56\data_ingestion\ingested\train.csv
+[ 2026-04-07 17:59:12,664 ] 104 root - INFO - Test file saved at: Artifacts\04_07_2026_17_58_56\data_ingestion\ingested\test.csv
+[ 2026-04-07 17:59:12,665 ] 123 root - INFO - Data ingestion completed successfully
+[ 2026-04-07 17:59:12,665 ] 33 root - INFO - Data ingestion completed: DataIngestionArtifact(trained_file_path='Artifacts\\04_07_2026_17_58_56\\data_ingestion\\ingested\\train.csv', test_file_path='Artifacts\\04_07_2026_17_58_56\\data_ingestion\\ingested\\test.csv')
+[ 2026-04-07 17:59:12,669 ] 40 root - INFO - Initiating data validation
+[ 2026-04-07 17:59:12,740 ] 48 root - INFO - Expected columns: 31
+[ 2026-04-07 17:59:12,740 ] 49 root - INFO - Actual columns: 31
+[ 2026-04-07 17:59:12,740 ] 48 root - INFO - Expected columns: 31
+[ 2026-04-07 17:59:12,740 ] 49 root - INFO - Actual columns: 31
+[ 2026-04-07 17:59:12,843 ] 42 root - INFO - Data validation completed: DataValidationArtifact(validation_status=True, valid_train_file_path='Artifacts\\04_07_2026_17_58_56\\data_validation\\validated\\train.csv', valid_test_file_path='Artifacts\\04_07_2026_17_58_56\\data_validation\\validated\\test.csv', invalid_train_file_path=None, invalid_test_file_path=None, drift_report_file_path='Artifacts\\04_07_2026_17_58_56\\data_validation\\drift_report\\report.yaml')
+[ 2026-04-07 17:59:12,843 ] 56 root - INFO - Initiating data transformation
+[ 2026-04-07 17:59:12,843 ] 66 root - INFO - Entered initiate_data_transformation
+[ 2026-04-07 17:59:12,913 ] 52 root - INFO - Creating KNN Imputer pipeline
+[ 2026-04-07 17:59:12,923 ] 57 root - INFO - Saving object...
+[ 2026-04-07 17:59:12,924 ] 64 root - INFO - Object saved successfully
+[ 2026-04-07 17:59:12,926 ] 57 root - INFO - Saving object...
+[ 2026-04-07 17:59:12,927 ] 64 root - INFO - Object saved successfully
+[ 2026-04-07 17:59:12,927 ] 115 root - INFO - Data transformation completed
+[ 2026-04-07 17:59:12,928 ] 58 root - INFO - Data transformation completed: DataTransformationArtifact(transformed_object_file_path='Artifacts\\04_07_2026_17_58_56\\data_transformation\\transformed_object\\preprocessing.pkl', transformed_train_file_path='Artifacts\\04_07_2026_17_58_56\\data_transformation\\transformed\\train.npy', transformed_test_file_path='Artifacts\\04_07_2026_17_58_56\\data_transformation\\transformed\\test.npy')
+[ 2026-04-07 17:59:12,928 ] 68 root - INFO - Initiating model training
+[ 2026-04-07 17:59:12,950 ] 89 root - INFO - Training model: Random Forest
+[ 2026-04-07 17:59:16,487 ] 89 root - INFO - Training model: Decision Tree
+[ 2026-04-07 17:59:16,586 ] 89 root - INFO - Training model: Gradient Boosting
+[ 2026-04-07 18:01:31,331 ] 89 root - INFO - Training model: Logistic Regression
+[ 2026-04-07 18:01:31,364 ] 89 root - INFO - Training model: AdaBoost
+[ 2026-04-07 18:01:50,361 ] 57 root - INFO - Saving object...
+[ 2026-04-07 18:01:50,378 ] 64 root - INFO - Object saved successfully
+[ 2026-04-07 18:01:50,378 ] 57 root - INFO - Saving object...
+[ 2026-04-07 18:01:50,396 ] 64 root - INFO - Object saved successfully
+[ 2026-04-07 18:01:50,396 ] 130 root - INFO - Model training completed successfully
+[ 2026-04-07 18:01:50,396 ] 70 root - INFO - Model training completed: ModelTrainerArtifact(trained_model_file_path='Artifacts\\04_07_2026_17_58_56\\model_trainer\\trained_model\\model.pkl', train_metric_artifact=ClassificationMetricArtifact(f1_score=0.9912262803509488, precision_score=0.9894093686354379, recall_score=0.9930498773507768), test_metric_artifact=ClassificationMetricArtifact(f1_score=0.9746835443037974, precision_score=0.9754552652414885, recall_score=0.9739130434782609))
+[ 2026-04-07 18:01:50,397 ] 74 root - INFO - Pipeline completed successfully
